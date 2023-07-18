@@ -5,20 +5,10 @@ def Foward():
     sensors.dd_mmotor(AnalogPin.P13, 0, AnalogPin.P14, 255)
     sensors.dd_mmotor(AnalogPin.P15, 1, AnalogPin.P16, 255)
 def section2():
-    right()
-    basic.pause(1500)
     Foward()
     basic.pause(500)
-    left()
-    basic.pause(4500)
     Foward()
     basic.pause(600)
-    right()
-    basic.pause(4500)
-    foward()
-    basic.pause(500)
-    left()
-    basic.pause(1500)
 
 def on_pin_pressed_p2():
     global start
