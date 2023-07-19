@@ -27,8 +27,22 @@ function Foward () {
     )
 }
 function section2 () {
+    Foward()
+    basic.pause(700)
     Right()
+    basic.pause(2750)
+    Foward()
+    basic.pause(1000)
+    Right()
+    basic.pause(7000)
+    Foward()
+    basic.pause(3500)
+    Right()
+    basic.pause(4700)
+    Foward()
     basic.pause(2000)
+    Left()
+    basic.pause(2450)
     Stop()
     basic.pause(9999999999999999999999)
 }
