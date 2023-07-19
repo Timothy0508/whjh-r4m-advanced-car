@@ -27,19 +27,10 @@ function Foward () {
     )
 }
 function section2 () {
-    Foward()
-    basic.pause(200)
-    Stop()
-    while (pins.digitalReadPin(DigitalPin.P8) == 1) {
-        Right()
-    }
     Right()
-    basic.pause(100)
-    while (pins.digitalReadPin(DigitalPin.P1) == 1) {
-        Left()
-    }
+    basic.pause(2000)
     Stop()
-    basic.pause(99999999999999999999999999)
+    basic.pause(9999999999999999999999)
 }
 input.onPinPressed(TouchPin.P2, function () {
     section += 1
@@ -106,18 +97,20 @@ basic.forever(function () {
         } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 0) {
             Left()
         } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 1) {
-            section += 1
-            basic.showNumber(section)
-            if (section == 2) {
+            if (section == 1) {
                 section2()
                 basic.clearScreen()
-            } else if (section == 4) {
+                Stop()
+                basic.pause(99999999999999999999999999)
+            } else if (section == 3) {
                 section4()
                 basic.clearScreen()
-            } else if (section == 5) {
+            } else if (section == 4) {
                 section5()
                 basic.clearScreen()
             }
+            section += 1
+            basic.showNumber(section)
         }
     }
 })
