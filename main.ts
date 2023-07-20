@@ -27,11 +27,11 @@ function Foward () {
     )
 }
 function section2 () {
-    Foward()
-    basic.pause(200)
     while (pins.digitalReadPin(DigitalPin.P1) != 1) {
         Left()
     }
+    Stop()
+    basic.pause(999999999999999999999999999999999)
 }
 input.onButtonPressed(Button.A, function () {
     step += 1
@@ -117,8 +117,11 @@ basic.forever(function () {
             Left()
         } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 1) {
             section += 1
+            Foward()
+            basic.pause(200)
             if (section == 2) {
                 if (step == 1) {
+                    basic.clearScreen()
                     section2()
                 }
             } else if (section == 4) {
