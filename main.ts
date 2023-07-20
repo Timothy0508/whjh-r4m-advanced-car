@@ -29,20 +29,33 @@ function Foward () {
 function section2 () {
     Foward()
     basic.pause(500)
-    Right()
-    basic.pause(1000)
+    while (pins.digitalReadPin(DigitalPin.P1) == 1) {
+        Left()
+    }
+    for (let index = 0; index <= 10; index++) {
+        if (pins.digitalReadPin(DigitalPin.P1) == 0 && pins.digitalReadPin(DigitalPin.P8) == 0) {
+            break;
+        } else if (pins.digitalReadPin(DigitalPin.P1) == 0 && pins.digitalReadPin(DigitalPin.P8) == 1) {
+            Right()
+        } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 0) {
+            Left()
+        }
+    }
     Foward()
     basic.pause(500)
     Backward()
-    basic.pause(200)
-    Right()
-    basic.pause(650)
-    Backward()
-    basic.pause(2000)
-    Foward()
     basic.pause(1000)
-    Left()
-    basic.pause(1000)
+    for (let index = 0; index <= 10; index++) {
+        if (pins.digitalReadPin(DigitalPin.P1) == 0 && pins.digitalReadPin(DigitalPin.P8) == 0) {
+            break;
+        } else if (pins.digitalReadPin(DigitalPin.P1) == 0 && pins.digitalReadPin(DigitalPin.P8) == 1) {
+            Right()
+        } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 0) {
+            Left()
+        }
+    }
+    Stop()
+    basic.pause(9999999999999999999999999999999999999999999999999999999999999999999)
 }
 input.onPinPressed(TouchPin.P2, function () {
     section += 1
