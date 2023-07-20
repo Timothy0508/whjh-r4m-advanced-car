@@ -28,35 +28,14 @@ function Foward () {
 }
 function section2 () {
     Foward()
-    basic.pause(500)
-    while (pins.digitalReadPin(DigitalPin.P1) == 1) {
+    basic.pause(200)
+    while (pins.digitalReadPin(DigitalPin.P1) != 1) {
         Left()
     }
-    for (let index = 0; index <= 10; index++) {
-        if (pins.digitalReadPin(DigitalPin.P1) == 0 && pins.digitalReadPin(DigitalPin.P8) == 0) {
-            break;
-        } else if (pins.digitalReadPin(DigitalPin.P1) == 0 && pins.digitalReadPin(DigitalPin.P8) == 1) {
-            Right()
-        } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 0) {
-            Left()
-        }
-    }
-    Foward()
-    basic.pause(500)
-    Backward()
-    basic.pause(1000)
-    for (let index = 0; index <= 10; index++) {
-        if (pins.digitalReadPin(DigitalPin.P1) == 0 && pins.digitalReadPin(DigitalPin.P8) == 0) {
-            break;
-        } else if (pins.digitalReadPin(DigitalPin.P1) == 0 && pins.digitalReadPin(DigitalPin.P8) == 1) {
-            Right()
-        } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 0) {
-            Left()
-        }
-    }
-    Stop()
-    basic.pause(9999999999999999999999999999999999999999999999999999999999999999999)
 }
+input.onButtonPressed(Button.A, function () {
+    step += 1
+})
 input.onPinPressed(TouchPin.P2, function () {
     section += 1
     Foward()
@@ -124,6 +103,7 @@ function Backward () {
     )
 }
 let section = 0
+let step = 0
 let start = 0
 start = 0
 pins.setPull(DigitalPin.P2, PinPullMode.PullUp)
@@ -136,20 +116,24 @@ basic.forever(function () {
         } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 0) {
             Left()
         } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 1) {
-            if (section == 1) {
-                section2()
-                basic.clearScreen()
-                Stop()
-                basic.pause(99999999999999999999999999)
-            } else if (section == 3) {
-                section4()
-                basic.clearScreen()
-            } else if (section == 4) {
-                section5()
-                basic.clearScreen()
-            }
             section += 1
-            basic.showNumber(section)
+            if (section == 2) {
+                if (step == 1) {
+                    section2()
+                }
+            } else if (section == 4) {
+                if (step == 2) {
+                    section4()
+                }
+            } else if (section == 5) {
+                if (step == 3) {
+                    section5()
+                }
+            }
+            Stop()
+            basic.pause(99999999999999999999999999999999999999999999999999999)
         }
+    } else {
+        basic.showNumber(step)
     }
 })
