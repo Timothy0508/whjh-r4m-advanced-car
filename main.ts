@@ -28,23 +28,21 @@ function Foward () {
 }
 function section2 () {
     Foward()
-    basic.pause(700)
+    basic.pause(500)
     Right()
-    basic.pause(2750)
+    basic.pause(1000)
+    Foward()
+    basic.pause(500)
+    Backward()
+    basic.pause(200)
+    Right()
+    basic.pause(650)
+    Backward()
+    basic.pause(2000)
     Foward()
     basic.pause(1000)
-    Right()
-    basic.pause(7000)
-    Foward()
-    basic.pause(3500)
-    Right()
-    basic.pause(4700)
-    Foward()
-    basic.pause(2000)
     Left()
-    basic.pause(2450)
-    Stop()
-    basic.pause(9999999999999999999999)
+    basic.pause(1000)
 }
 input.onPinPressed(TouchPin.P2, function () {
     section += 1
@@ -97,6 +95,20 @@ function section5 () {
     basic.pause(800)
     Stop()
     basic.pause(99999999999999999999999)
+}
+function Backward () {
+    sensors.DDMmotor(
+    AnalogPin.P13,
+    1,
+    AnalogPin.P14,
+    127
+    )
+    sensors.DDMmotor(
+    AnalogPin.P15,
+    0,
+    AnalogPin.P16,
+    127
+    )
 }
 let section = 0
 let start = 0
