@@ -27,11 +27,11 @@ function Foward () {
     )
 }
 function section2 () {
-    while (pins.digitalReadPin(DigitalPin.P1) != 1) {
-        Left()
-    }
-    Stop()
-    basic.pause(999999999999999999999999999999999)
+    Foward()
+    basic.pause(1000)
+    fowardLeft()
+    basic.pause(10)
+    start = 0
 }
 input.onButtonPressed(Button.A, function () {
     step += 1
@@ -39,9 +39,23 @@ input.onButtonPressed(Button.A, function () {
 input.onPinPressed(TouchPin.P2, function () {
     section += 1
     Foward()
-    basic.pause(1000)
+    basic.pause(2000)
     start = 1
 })
+function fowardLeft () {
+    sensors.DDMmotor(
+    AnalogPin.P13,
+    1,
+    AnalogPin.P14,
+    255
+    )
+    sensors.DDMmotor(
+    AnalogPin.P15,
+    1,
+    AnalogPin.P16,
+    127
+    )
+}
 function section4 () {
     Right()
     basic.pause(1500)
@@ -117,8 +131,6 @@ basic.forever(function () {
             Left()
         } else if (pins.digitalReadPin(DigitalPin.P1) == 1 && pins.digitalReadPin(DigitalPin.P8) == 1) {
             section += 1
-            Foward()
-            basic.pause(200)
             if (section == 2) {
                 if (step == 1) {
                     basic.clearScreen()
@@ -133,10 +145,9 @@ basic.forever(function () {
                     section5()
                 }
             }
-            Stop()
-            basic.pause(99999999999999999999999999999999999999999999999999999)
         }
     } else {
         basic.showNumber(step)
+        Stop()
     }
 })
