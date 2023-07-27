@@ -27,10 +27,15 @@ function Foward () {
     )
 }
 function section2 () {
+    Left()
+    basic.pause(100)
     Foward()
     basic.pause(1000)
     fowardLeft()
-    basic.pause(10)
+    basic.pause(750)
+    Stop()
+    Backward()
+    basic.pause(200)
     start = 0
 }
 input.onButtonPressed(Button.A, function () {
